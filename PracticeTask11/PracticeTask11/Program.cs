@@ -13,13 +13,20 @@ namespace PracticeTask11
         static void Main(string[] args)
         {
             // Receiving the message,
-            string inputMessage = Console.ReadLine();
+            string inputMessage;
+            do
+            {
+                Console.Write("Enter the message: ");
+                inputMessage = Console.ReadLine();
+                if (inputMessage.Length % 3 != 0)
+                    Console.WriteLine("The number of symbols is not a multiple of 3!");
+            } while (inputMessage.Length % 3 != 0);
 
             // Decrypted message.
             string realMessage = "";
 
             // Decrypting the message.
-            for(int i = 0; i < inputMessage.Length; i += 3)
+            for (int i = 0; i < inputMessage.Length; i += 3)
             {
                 // The number of zeros in a group of 3.
                 int zeroCount = 0;
@@ -30,7 +37,7 @@ namespace PracticeTask11
                 // Counting ones and zeros.
                 for (int j = i; j < i + 3; j++)
                 {
-                    if (inputMessage[i] == '0')
+                    if (inputMessage[j] == '0')
                         zeroCount++;
                     else
                         oneCount++;
@@ -43,7 +50,7 @@ namespace PracticeTask11
                     realMessage += "1";
             }
 
-            Console.WriteLine(realMessage);
+            Console.WriteLine("Decrypted message: " + realMessage);
 
             Console.ReadLine();
         }
